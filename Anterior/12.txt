@@ -1,0 +1,209 @@
+===================================
+Empresa: 12 - JETA EMPREENDIMENTOS IMOBILIARIOS E PARTICIPACOES LTDA
+Status Geral da Empresa: ERRO PARCIAL
+===================================
+Checklist de Acumuladores:
+Acumulador 1 (Vigência 1) - Inativado
+Acumulador 1 (Vigência 2) - Inativado
+Acumulador 2 (Vigência 1) - Inativado
+Acumulador 3 (Vigência 1) - Inativado
+Acumulador 4 (Vigência 1) - Inativado
+Acumulador 5 (Vigência 1) - Inativado
+Acumulador 5 (Vigência 2) - Inativado
+Acumulador 6 (Vigência 1) - Inativado
+Acumulador 7 (Vigência 1) - Inativado
+Acumulador 8 (Vigência 1) - Inativado
+Acumulador 8 (Vigência 2) - Inativado
+Acumulador 9 (Vigência 1) - Inativado
+Acumulador 10 (Vigência 1) - Inativado
+Acumulador 11 (Vigência 1) - Inativado
+Acumulador 12 (Vigência 1) - ERRO
+Acumulador 13 (Vigência 1) - Já inativo
+Acumulador 14 (Vigência 1) - Já inativo
+Acumulador 15 (Vigência 1) - ERRO
+Acumulador 15 (Vigência 2) - Pendente
+Acumulador 16 (Vigência 1) - Pendente
+Acumulador 16 (Vigência 2) - Pendente
+Acumulador 17 (Vigência 1) - Pendente
+Acumulador 17 (Vigência 2) - Pendente
+Acumulador 18 (Vigência 1) - Pendente
+Acumulador 18 (Vigência 2) - Pendente
+Acumulador 19 (Vigência 1) - Pendente
+Acumulador 20 (Vigência 1) - Pendente
+Acumulador 21 (Vigência 1) - Pendente
+Acumulador 22 (Vigência 1) - Pendente
+Acumulador 23 (Vigência 1) - Pendente
+Acumulador 24 (Vigência 1) - Pendente
+Acumulador 25 (Vigência 1) - Pendente
+Acumulador 26 (Vigência 1) - Pendente
+Acumulador 27 (Vigência 1) - Pendente
+Acumulador 28 (Vigência 1) - Pendente
+Acumulador 29 (Vigência 1) - Pendente
+Acumulador 30 (Vigência 1) - Pendente
+Acumulador 31 (Vigência 1) - Pendente
+Acumulador 32 (Vigência 1) - Pendente
+Acumulador 33 (Vigência 1) - Pendente
+Acumulador 34 (Vigência 1) - Pendente
+Acumulador 35 (Vigência 1) - Pendente
+Acumulador 36 (Vigência 1) - Pendente
+Acumulador 37 (Vigência 1) - Pendente
+Acumulador 38 (Vigência 1) - Pendente
+Acumulador 39 (Vigência 1) - Pendente
+Acumulador 40 (Vigência 1) - Pendente
+Acumulador 41 (Vigência 1) - Pendente
+Acumulador 42 (Vigência 1) - Pendente
+Acumulador 43 (Vigência 1) - Pendente
+Acumulador 44 (Vigência 1) - Pendente
+Acumulador 45 (Vigência 1) - Pendente
+Acumulador 46 (Vigência 1) - Pendente
+Acumulador 47 (Vigência 1) - Pendente
+Acumulador 48 (Vigência 1) - Pendente
+Acumulador 49 (Vigência 1) - Pendente
+Acumulador 50 (Vigência 1) - Pendente
+Acumulador 51 (Vigência 1) - Pendente
+Acumulador 52 (Vigência 1) - Pendente
+Acumulador 53 (Vigência 1) - Pendente
+Acumulador 54 (Vigência 1) - Pendente
+Acumulador 54 (Vigência 2) - Pendente
+Acumulador 55 (Vigência 1) - Pendente
+Acumulador 56 (Vigência 1) - Pendente
+Acumulador 57 (Vigência 1) - Pendente
+Acumulador 58 (Vigência 1) - Pendente
+Acumulador 59 (Vigência 1) - Pendente
+Acumulador 60 (Vigência 1) - Pendente
+Acumulador 60 (Vigência 2) - Pendente
+Acumulador 61 (Vigência 1) - Pendente
+Acumulador 62 (Vigência 1) - Pendente
+Acumulador 63 (Vigência 1) - Pendente
+Acumulador 64 (Vigência 1) - Pendente
+Acumulador 65 (Vigência 1) - Pendente
+Acumulador 66 (Vigência 1) - Pendente
+Acumulador 67 (Vigência 1) - Pendente
+Acumulador 68 (Vigência 1) - Pendente
+Acumulador 69 (Vigência 1) - Pendente
+Acumulador 70 (Vigência 1) - Pendente
+Acumulador 70 (Vigência 2) - Pendente
+Acumulador 70 (Vigência 3) - Pendente
+Acumulador 75 (Vigência 1) - Pendente
+Acumulador 76 (Vigência 1) - Pendente
+Acumulador 77 (Vigência 1) - Pendente
+Acumulador 77 (Vigência 2) - Pendente
+Acumulador 77 (Vigência 3) - Pendente
+Acumulador 77 (Vigência 4) - Pendente
+Acumulador 77 (Vigência 5) - Pendente
+Acumulador 77 (Vigência 6) - Pendente
+Acumulador 78 (Vigência 1) - Pendente
+Acumulador 78 (Vigência 2) - Pendente
+Acumulador 200 (Vigência 1) - Pendente
+Acumulador 200 (Vigência 2) - Pendente
+Acumulador 200 (Vigência 3) - Pendente
+Acumulador 201 (Vigência 1) - Pendente
+Acumulador 201 (Vigência 2) - Pendente
+Acumulador 201 (Vigência 3) - Pendente
+Acumulador 202 (Vigência 1) - Pendente
+Acumulador 203 (Vigência 1) - Pendente
+Acumulador 204 (Vigência 1) - Pendente
+Acumulador 205 (Vigência 1) - Pendente
+Acumulador 206 (Vigência 1) - Pendente
+Acumulador 207 (Vigência 1) - Pendente
+Acumulador 208 (Vigência 1) - Pendente
+Acumulador 209 (Vigência 1) - Pendente
+Acumulador 210 (Vigência 1) - Pendente
+Acumulador 211 (Vigência 1) - Pendente
+Acumulador 1004 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 1004 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 1004 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 1004 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 1004 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 1005 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 1005 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 1009 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 1009 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 1009 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 1009 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 1009 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 1009 (Vigência 6) - Ignorado (Fora da regra)
+Acumulador 1077 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 1077 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 1077 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 1078 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 1078 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 6) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 7) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 8) - Ignorado (Fora da regra)
+Acumulador 2000 (Vigência 9) - Ignorado (Fora da regra)
+Acumulador 2001 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2001 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2001 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2001 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2001 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 2001 (Vigência 6) - Ignorado (Fora da regra)
+Acumulador 2001 (Vigência 7) - Ignorado (Fora da regra)
+Acumulador 2001 (Vigência 8) - Ignorado (Fora da regra)
+Acumulador 2002 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2002 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2002 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2002 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 6) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 7) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 8) - Ignorado (Fora da regra)
+Acumulador 2003 (Vigência 9) - Ignorado (Fora da regra)
+Acumulador 2006 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2006 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2006 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2006 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2006 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 2006 (Vigência 6) - Ignorado (Fora da regra)
+Acumulador 2006 (Vigência 7) - Ignorado (Fora da regra)
+Acumulador 2006 (Vigência 8) - Ignorado (Fora da regra)
+Acumulador 2013 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2013 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2013 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2013 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2013 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 2014 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2014 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2014 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2014 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2014 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 2014 (Vigência 6) - Ignorado (Fora da regra)
+Acumulador 2015 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2015 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2015 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2015 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2015 (Vigência 5) - Ignorado (Fora da regra)
+Acumulador 2016 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2016 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 2016 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 2016 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 2200 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 2201 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 4002 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 4002 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 4002 (Vigência 3) - Ignorado (Fora da regra)
+Acumulador 4002 (Vigência 4) - Ignorado (Fora da regra)
+Acumulador 4076 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 4077 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 4078 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 5059 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 5059 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 9118 (Vigência 1) - Ignorado (Fora da regra)
+Acumulador 9118 (Vigência 2) - Ignorado (Fora da regra)
+Acumulador 9118 (Vigência 3) - Ignorado (Fora da regra)
+===================================
+Erros:
+cannot access local variable 'precisa_extrair' where it is not associated with a value
+Falha [Linha 15 - Cod 12]: Nova vigência criada para este acumulador.
+Falha [Linha 18 - Cod 15]: Nova vigência criada para este acumulador.
+===================================
+Fim do log.

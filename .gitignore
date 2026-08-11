@@ -1,0 +1,31 @@
+# Regras de exclusao de arquivos compilados do Python para manter o repositorio limpo
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignorar ambientes virtuais de execucao local do Python de qualquer tipo
+.venv/
+venv/
+ENV/
+
+# Ignorar arquivos temporarios ou logs locais gerados pela execucao do script
+*.log
+*.csv
+
+# Ignorar o arquivo de controle local que serve para interromper o fluxo manualmente
+PARAR.txt
+
+# Ignorar planilhas de dados locais que possuem dados reais e sensiveis de clientes
+*.xlsx
+*.xls
+
+# Ignorar explicitamente os diretorios locais que contem dados e relatorios das empresas
+# Elas nao devem ser enviadas ao Git pois possuem dados privados
+Relação Por empresa/
+Relação Por empresa 2/
+Relação por empresa 3/
+Relatorio Final/
+Relatório Inativação/
+imagens_rpa/
+

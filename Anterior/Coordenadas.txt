@@ -1,0 +1,419 @@
+
+
+## Resumo do projeto até agora
+
+Estou desenvolvendo uma automação para o sistema **Domínio Escrita Fiscal** com foco em **inativação de acumuladores** em várias empresas.
+
+A solução foi pensada em **2 etapas**:
+
+### Etapa 1 — extração e validação
+
+Objetivo:
+
+* entrar em cada empresa,
+* acessar a tela de acumuladores,
+* gerar relatório Excel,
+* ler esse relatório,
+* comparar com a planilha principal de acumuladores,
+* descobrir quais acumuladores realmente existem na empresa e devem ser inativados.
+
+### Etapa 2 — inativação
+
+Objetivo:
+
+* abrir a empresa,
+* entrar em acumuladores,
+* buscar os acumuladores válidos,
+* marcar como inativo com data `03/2026`,
+* gravar,
+* criar log por empresa.
+
+Esse fluxo está alinhado com o escopo funcional que defini no projeto.
+
+---
+
+## O que já foi descoberto e validado
+
+### 1. O menu de entrada em acumuladores não deve usar coordenada fixa
+
+Inicialmente a automação usava clique por coordenadas no menu, mas isso era instável porque o layout variava entre empresas.
+
+Depois foi validado que existe um atalho de teclado muito melhor:
+
+* **segurar ALT**
+* pressionar **A**
+* pressionar **A**
+
+Ou seja, o fluxo correto não é “Alt+A duas vezes”, mas sim:
+
+* `keyDown("alt")`
+* `press("a")`
+* `press("a")`
+* `keyUp("alt")`
+
+Isso foi incorporado ao agente como `sequencia_alt_aa()`.
+
+---
+
+### 2. O NVDA confirmou que o sistema expõe acessibilidade
+
+Foi testado com o NVDA e ficou claro que o Domínio expõe o texto “Acumuladores”, então a interface tem algum nível de acessibilidade.
+
+Mas, na prática, depois que o atalho `ALT + A + A` funcionou, decidimos **parar de depender de navegação por acessibilidade/TAB** para entrar em Acumuladores, porque o atalho é mais robusto. Isso também levou a deixar `usar_acessibilidade=False` na configuração efetiva dos fluxos atuais.
+
+---
+
+### 3. O maior problema técnico atual não é mais abrir Acumuladores
+
+Essa parte está praticamente resolvida com o atalho.
+
+O problema atual ficou concentrado em:
+
+* localizar e clicar em **Listagem**
+* localizar e clicar em **Relatório**
+* manter o tempo certo entre as ações
+* evitar esperas exageradas que deixam o processo lento demais.
+
+---
+
+## Estrutura atual dos arquivos
+
+### `agente_dominio.py`
+
+É a camada utilitária do robô. Ele concentra:
+
+* clique por coordenada,
+* clique por imagem,
+* escrita,
+* hotkeys,
+* limpeza de campos,
+* reset com ESC,
+* e agora também a função `sequencia_alt_aa()`.
+
+A versão mais recente já tem essa função implementada corretamente dentro da classe `AgenteDominio`. 
+
+### `etapa1_validacao.py`
+
+Responsável por:
+
+* carregar empresas,
+* carregar planilha principal,
+* entrar no Domínio,
+* gerar relatório por empresa,
+* converter `.xls` para `.xlsx`,
+* ler os relatórios,
+* comparar com a planilha principal,
+* gerar o consolidado.
+
+A versão mais recente já usa:
+
+* `tempo_dominio_baixo`
+* `tempo_dominio`
+* `tempo_dominio_alto`
+* `tempo_dominio_max`
+
+para separar melhor as esperas por tipo de ação. 
+
+### `etapa2_inativacao.py`
+
+Responsável por:
+
+* abrir a empresa,
+* entrar em acumuladores via `ALT + A + A`,
+* abrir listagem,
+* buscar o acumulador,
+* tratar o caso especial do código `1`,
+* alterar situação,
+* preencher data,
+* gravar,
+* gerar log por empresa.
+
+A versão mais recente também já foi reorganizada com tempos por nível de ação. 
+
+### `main.py`
+
+Foi criada uma tentativa de fluxo unificado:
+
+* extração
+* OCR
+* processamento do relatório
+* inativação
+
+Nele foi usada a biblioteca `pytesseract` para clicar em palavras da tela como “Listagem” e “Relat”. 
+
+---
+
+## Problema atual do `main.py`
+
+A lógica do OCR faz sentido, mas o erro atual não é da tela.
+
+No log apareceu:
+
+* o sistema entrou na empresa,
+* tentou abrir Acumuladores,
+* detectou que a tela abriu,
+* clicou em Cancelar,
+* tentou procurar “Listagem”,
+* e então falhou porque o Tesseract não foi encontrado no caminho configurado. 
+
+O erro exato foi:
+
+* `C:\Program Files\Tesseract-OCR\tesseract.exe is not installed or it's not in your PATH`
+
+Ou seja:
+
+* a palavra “Relatório” aparece na tela,
+* mas o OCR não consegue funcionar porque o executável do Tesseract não está instalado ou o caminho configurado está errado. 
+
+---
+
+## Estratégia de tempo definida
+
+Foi decidido que não faz sentido esperar `7.5s` em tudo.
+
+Então foi criada uma separação por categorias:
+
+* `tempo_dominio_baixo`
+* `tempo_dominio`
+* `tempo_dominio_alto`
+* `tempo_dominio_max`
+
+E o mapeamento ficou assim:
+
+### Etapa 1
+
+* iniciar sistema: `baixo`
+* F8 / digitar / Enter / Alt+A+A: `baixo`
+* Listagem: `tempo_dominio`
+* tirar relatório / opções / trocar / gerar: `baixo`
+* Excel / nome / salvar: `baixo`
+* ESC do loop: `baixo`
+
+### Etapa 2
+
+* iniciar sistema: `baixo`
+* F8 / digitar / Enter / Alt+A+A: `baixo`
+* abrir listagem / buscar acumulador: `max`
+* alterar situação / inativo / data / gravar: `baixo`
+* procurar próximo acumulador: `tempo_dominio`
+* ESC do loop: `baixo`
+
+Isso foi descrito explicitamente no roteiro mais recente e refletido nas versões ajustadas dos scripts.
+
+---
+
+## Problemas já enfrentados antes
+
+### 1. Python misturado
+
+Em um momento, houve conflito entre:
+
+* Python 3.14
+* Python 3.11
+
+Os pacotes estavam sendo instalados em um Python e o script rodando em outro.
+
+### 2. `pywinauto/comtypes`
+
+Também houve erro de instalação relacionado a:
+
+* `clear_comtypes_cache.exe`
+* `comtypes`
+* `pywinauto`
+
+Por isso a estratégia prática acabou ficando mais voltada para:
+
+* teclado,
+* fallback por coordenada,
+* imagem,
+* e tentativa de OCR só no `main.py`.
+
+### 3. Erro de identação no método `sequencia_alt_aa`
+
+Em uma versão do `agente_dominio.py`, a função tinha sido colada fora da identação correta da classe, o que quebrava tudo. Isso já foi corrigido na versão atual.
+
+---
+
+## Situação atual resumida
+
+### O que está resolvido
+
+* entrada em empresa com `F8`
+* entrada em Acumuladores com `ALT segurado + A + A`
+* estrutura geral das duas etapas
+* criação de logs
+* validação por planilha
+* separação melhor dos tempos
+
+### O que ainda precisa resolver
+
+* definir a melhor forma de abrir **Listagem** e principalmente **Relatório**
+* decidir se OCR será mantido ou abandonado
+* instalar/configurar corretamente o Tesseract, se OCR continuar
+* refinar os tempos finais para rodar em lote sem ficar lento demais
+* eventualmente limpar o `main.py` ou consolidar a melhor abordagem
+
+---
+
+## Resumo técnico final para orientar a próxima IA
+
+Hoje existem **duas linhas possíveis**:
+
+### Linha A — sem OCR
+
+Usar:
+
+* teclado
+* coordenadas estáveis
+* imagens de fallback
+
+Vantagem:
+
+* menos dependência externa
+* menos instalação
+
+### Linha B — com OCR
+
+Usar o `main.py` com:
+
+* `pytesseract`
+* leitura de texto da tela
+* clique em “Listagem” e “Relatório” por OCR
+
+Mas isso só funciona se:
+
+* o Tesseract estiver instalado corretamente,
+* o caminho em `CFG.caminho_tesseract` estiver certo. 
+
+
+
+
+
+=======================================================
+
+
+Caminhos das pastas
+"C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\__pycache__"
+"C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\imagens_rpa"
+"C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\Relação Por empresa"
+"C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\Relatorio Final"
+
+"C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\EMPRESA PARA INATIVAR ACUMULADOR.xls"
+"C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\EMPRESA PARA INATIVAR ACUMULADOR.xlsx"
+"C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\RELAÇÃO DE ACUMULADORES.xlsx"
+"C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\main.py"
+============= Etapa 1 ==================================
+Filtrar Relatórios: 
+-> Iniciar sistema 
+F8 = Trocar empresa - Referente ao código da Planilha(coluna A)
+'Enter' = Entrar na empresa  
+
+-> Entrar em acumuladores
+Alt + a + a = Entrar em acumuladores
+'Enter' = para selecionar acumuladores
+Point(x=871, y=524) = Clicar
+Clicar 10 vezes "Tab" para cancelar
+
+-> Buscar ou palavra chave "Listagem >>"
+Clicar "TAB" 2 Vezes e DEPOIS "enter" = Para abrir listagem # tempo_dominio
+Clicar "TAB" 169 vezes  e DEPOIS "enter" =  # tempo_dominio_baixo ou palavra chave "Relatorio"
+Clicar seta para baixo = para mudar a opção # tempo_dominio_baixo
+Clicar "TAB" 20 vezes e DEPOIS "enter" = Clicar para gerar # tempo_dominio_baixo
+
+Tempo demorado 10 segundos
+- > Salva Planilha # tempo_dominio
+Point(x=36, y=307) = Clicar na opção Excel
+Point(x=359, y=418) = Escrever " - " + {codigo_empresa}
+Point(x=593, y=412) = Clicar na opção de salvar
+O nome do arquivo SEMPRE FICA: "RELAÇÃO DE ACUMULADORES" + {código_empresa}.xls
+Clicar Alt + F4 = para fechar a planilha que abre automaticamente.
+Point(x=559, y=581) = Para voltar para a aba dominio
+
+-> Trocar extensão
+.xls para .xlsx
+
+-> Filtrar planilha
+Endereço das planilhas salvar: ( C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\Relação Por empresa)
+Excluir a linha 1 a 6, pois o código os códigos dos acumuladores começa na linha 2(após exclusão)
+Excluir as colunas que são nulas. 
+
+-> Fechar sistema para iniciar novamente (loop)
+ 
+"esc" = Clicar esc no total de 10 vezes. # tempo_dominio_baixo
+
+
+-> Comparação de Acumuladores (Parte mais importante e crucial para sucesso)
+
+Endereço da planilha dos acumuladores, está em amarelo os que devem ser inativados. 
+(C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador/RELAÇÃO DE ACUMULADORES.xlsx)
+
+Com a planilha da empresa referente e a planilha dos acumuladores, existem muitas incongruências, como por exemplo, acumulador 213, 217 e etc, para isso, é preciso, excluir até os 211 e se tiver acumulador de 211 até 1000, colocar uma cópia da planilha da empresa com os acumuladores que foi inativado e também em outra cor aqueles que podem sem possiveis acumuladores a ser inativado(ou seja, está na regra dos 211 até 1000).
+Lembrando que o acumulador 211 deve ser excluido, apenas colocando o parametro de 212 até 1000 como uma busca dentro da planilha.  
+
+Lembrando que, se por acaso na empresa *não* ter o acumulador 69 (exemplo) e na planilha dos acumuladores tiver, não tem necessidade de fazer a busca, então precisa fazer um if, se tiver, inativa, senão, pula e joga no log do arquivo de texto.
+
+
+================ Segunda etapa ======================================
+
+-> Iniciar sistema #tempo_dominio_baixo
+F8 = Trocar empresa - Referente ao código da Planilha(coluna A)
+'Enter' = Entrar na empresa
+Alt + a + a = Entrar em acumuladores 
+
+
+-> Buscar #tempo_dominio_max
+Point(x=1310, y=406) = Clicar em Listagem (listar códigos)
+Digitar o Acumulador  = Na planilha - Referente a relação de Acumuladores da Planilha(coluna A)
+Point(x=1700, y=699) = Clicar em buscar
+*Observação: Na planilha tem o código 1 duas vezes, nesse caso na linha 4 (2º código "1") Precisa fazer isso em todas as empresas
+{
+Point(x=1525, y=351) = Clicar no segundo "1" e fazer o processo. 
+Point(x=1700, y=699) = Clicar em buscar
+};*
+
+-> Alterar Status # tempo_dominio_baixo
+Point(x=926, y=348) = Clicar em situação
+Point(x=922, y=378) = Clicar em inativo
+Point(x=1192, y=356) = Clicar na data "03/2026"
+Point(x=1326, y=370) = Clicar em "Gravar"
+
+
+-> Procurar outro acumulador da mesma empresa # tempo_dominio
+Point(x=1694, y=700) = Clicar em buscar
+Digitar o acumulador = Na planilha - Referente a relação de Acumuladores da Planilha(coluna A)
+Point(x=1694, y=700) = Clicar em buscar
+
+-> Alterar Status #tempo_dominio_baixo
+Point(x=926, y=348) = Clicar em situação
+Point(x=922, y=378) = Clicar em inativo
+Point(x=1192, y=356) = Clicar na data "03/2026"
+Point(x=1326, y=370) = Clicar em "Gravar"
+
+-> Criar log
+Endereço de onde deve ficar o log: C:\Users\guilherme.rossi\Desktop\PYTHON DOCS\Projects Agrelli\P1 - Inativar Acumulador\Relatorio Final
+Criar log com o exemplo abaixo:
+===================================
+Nome/código da empresa
+==================================
+Acumulador que foi inativado:
+Acumulador1
+Acumulador2
+Acumulador3
+Acumulador4
+Acumulador5
+Acumulador6
+=================================
+Fim do log.
+
+*Quero que crie um arquivo de texto para cada empresa que for feito*
+
+
+-> Fechar sistema para iniciar novamente (loop) #tempo_dominio_baixo
+
+"esc" = Clicar esc no total de 10 vezes.
+
+
+Com a planilha da empresa referente e a planilha dos acumuladores, existem muitas incongruências, como por exemplo, acumulador 213, 217 e etc, para isso, é preciso, excluir até os 211 e se tiver acumulador de 211 até 1000, colocar uma cópia da planilha da empresa com os acumuladores que foi inativado e também em outra cor aqueles que podem sem possiveis acumuladores a ser inativado(ou seja, está na regra dos 211 até 1000).
+Lembrando que o acumulador 211 deve ser excluido, apenas colocando o parametro de 212 até 1000 como uma busca dentro da planilha. 
+
+
